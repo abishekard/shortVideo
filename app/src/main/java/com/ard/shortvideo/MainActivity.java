@@ -16,19 +16,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
 
-import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.extractor.mp4.FragmentedMp4Extractor;
-import com.google.android.exoplayer2.extractor.ts.DefaultTsPayloadReaderFactory;
-import com.google.android.exoplayer2.extractor.ts.H262Reader;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
+;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = new JSONObject(response).getJSONArray("msg");
 
+                            Log.e(TAG,"........jArr........."+jsonArray.length());
                             for(int i=0;i<jsonArray.length();i++)
                             {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -89,9 +78,11 @@ public class MainActivity extends AppCompatActivity {
                                  String gifUrl=jsonObject.getString("gif");
 
                                  videoList.add(new VideoModel(desc,videoUrl,thumbUrl,gifUrl));
+                              //   Log.e(TAG,videoUrl);
 
                             }
 
+                           // Log.e(TAG,"........vList........."+videoList.size());
                             videoAdapter = new VideoAdapter(videoList,MainActivity.this);
                             viewPager2.setAdapter(videoAdapter);
 
